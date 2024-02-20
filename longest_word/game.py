@@ -10,8 +10,8 @@ Placeholder doc string
 
 from random import choice
 import string
-# import enchant
 from collections import Counter
+import requests
 
 class Game:
     """A game
@@ -25,11 +25,6 @@ class Game:
 
     def is_valid(self, word: str) -> bool:
         """Return True if and only if the word is valid, given the Game's grid"""
-        # Turns out you don't need to check if the word is a valid Engish word
-        # # therefore remove enchant portion
-        # Get a dictionary with valid English words
-        # dictionary = enchant.Dict("en_EN")
-
         # Get counters for the game grid and the words so they can be compared
         count_grid = Counter(self.grid)
         count_word = Counter(word)
@@ -42,9 +37,10 @@ class Game:
             # if the letter is used more time than it appears in the grid return false
             if count_word[key] > count_grid[key]:
                 return False
-        # Otherwise check the word is in the dictionary
-        return True
-        # return dictionary.check(word)
+
+        # Check Le Wagon's Dictionary API to check for valid English words
+        check_dictionary = requests.get(f"https://wagon-dictionary.herokuapp.com/{word}").json()
+        return check_dictionary["found"]
 
     # Added this to experiment with poetry run pylint
     # def is_longest_word(self, word: str) -> bool:

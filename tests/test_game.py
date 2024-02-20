@@ -22,6 +22,10 @@ class TestGame:
         assert game2.is_valid('PULP') == True
         assert game2.is_valid('WHIP') == True
         assert game2.is_valid('DANCE') == False
-        # Turns out you don't need to check if the word is a valid Engish word
-        ## therefore removed valid word check
-        assert game2.is_valid('LKPPU') == False
+
+    def test_unknown_word_is_invalid(self):
+        """A word that is not in the english directory should no be valid"""
+        game3 = Game()
+        game3.grid = ['P', 'I', 'L', 'U', 'H', 'W', 'P', 'Y', 'K'] # Force the grid to a test case:
+        assert game3.is_valid('LKPPU') == False
+        assert game3.is_valid('HULK') == True
