@@ -26,6 +26,10 @@ class Game:
     def is_valid(self, word: str) -> bool:
         """Return True if and only if the word is valid, given the Game's grid"""
         # Get counters for the game grid and the words so they can be compared
+
+        if len(word) == 0:
+            return False
+
         count_grid = Counter(self.grid)
         count_word = Counter(word)
 

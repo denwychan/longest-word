@@ -22,6 +22,7 @@ class TestGame:
         assert game2.is_valid('PULP') == True
         assert game2.is_valid('WHIP') == True
         assert game2.is_valid('DANCE') == False
+        assert game2.is_valid('') == False
 
     def test_unknown_word_is_invalid(self):
         """A word that is not in the english directory should no be valid"""
