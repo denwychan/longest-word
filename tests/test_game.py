@@ -24,4 +24,4 @@ class TestGame:
         assert game2.is_valid('DANCE') == False
         # Turns out you don't need to check if the word is a valid Engish word
         ## therefore removed valid word check
-        # assert game2.is_valid('LKPPU') == False
+        assert game2.is_valid('LKPPU') == False
